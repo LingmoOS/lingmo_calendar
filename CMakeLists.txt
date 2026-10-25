@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(GNUInstallDirs)
 include(CTest)
 
-find_package(LingmoToolkit REQUIRED)
+find_package(LingmoSDK REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBICAL REQUIRED IMPORTED_TARGET libical)
 pkg_check_modules(ICU REQUIRED IMPORTED_TARGET icu-uc icu-i18n)
@@ -34,7 +34,7 @@ add_library(calendar-core STATIC
     src/uuid.cpp
 )
 target_include_directories(calendar-core PUBLIC src)
-target_link_libraries(calendar-core PUBLIC Lingmo::ToolkitBase PkgConfig::LIBICAL PkgConfig::ICU PkgConfig::CURL)
+target_link_libraries(calendar-core PUBLIC Lingmo::SDKBase PkgConfig::LIBICAL PkgConfig::ICU PkgConfig::CURL)
 
 add_library(calendar-ui STATIC
     src/ui/calendarroot.cpp
@@ -52,7 +52,7 @@ add_library(calendar-ui STATIC
     src/ui/timegridview.cpp
     src/ui/yearview.cpp
 )
-target_link_libraries(calendar-ui PUBLIC calendar-core Lingmo::Toolkit)
+target_link_libraries(calendar-ui PUBLIC calendar-core Lingmo::SDK)
 
 add_executable(lingmo-calendar src/main.cpp)
 target_compile_definitions(lingmo-calendar PRIVATE CALENDAR_VERSION="${PROJECT_VERSION}")
