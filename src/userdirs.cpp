@@ -1,0 +1,31 @@
+// SPDX-FileCopyrightText: 2026 LingmoOS Contributors
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#include "userdirs.h"
+
+#include <base/file.h>
+#include <base/paths.h>
+
+#include <sstream>
+
+std::string documentsDirectory()
+{
+    const std::string home = Lingmo::base::paths::home();
+    const std::optional<std::string> contents =
+        Lingmo::base::file::read(Lingmo::base::paths::configHome() + "/user-dirs.dirs");
+    if (contents) {
+        std::istringstream lines(*contents);
+        std::string line;
+        while (std::getline(lines, line)) {
+            const std::string prefix = "XDG_DOCUMENTS_DIR=\"";
+            if (!line.starts_with(prefix) || line.size() < prefix.size() + 1 || line.back() != '"')
+                continue;
+            std::string path = line.substr(prefix.size(), line.size() - prefix.size() - 1);
+            if (path.starts_with("$HOME"))
+                path = home + path.substr(5);
+            if (path.starts_with('/'))
+                return path;
+        }
+    }
+    return home + "/Documents";
+}

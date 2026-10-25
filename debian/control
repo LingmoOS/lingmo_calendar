@@ -1,0 +1,20 @@
+Source: lingmo-calendar
+Section: utils
+Priority: optional
+Maintainer: Lingmo OS Team <team@lingmo.org>
+Build-Depends: cmake,
+               debhelper-compat (= 14),
+               lingmo-toolkit,
+               libcurl4-openssl-dev,
+               libical-dev,
+               libicu-dev,
+               pkg-config
+Standards-Version: 4.7.2
+Homepage: https://github.com/lingmoos/calendar
+
+Package: lingmo-calendar
+Architecture: any
+Depends: lingmo-toolkit,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Lingmo OS Calendar
