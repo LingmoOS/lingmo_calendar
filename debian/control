@@ -14,7 +14,7 @@ Homepage: https://github.com/lingmoos/calendar
 
 Package: lingmo-calendar
 Architecture: any
-Depends: lingmo-sdk,
+Depends: lingmo-sdk-dev,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Lingmo OS Calendar
