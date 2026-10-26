@@ -4,4 +4,4 @@ Name=Calendar Reminders
 Exec=lingmo-calendar-reminders
 TryExec=lingmo-calendar-reminders
 NoDisplay=true
-OnlyShowIn=Cutefish;
+OnlyShowIn=Lingmo;
